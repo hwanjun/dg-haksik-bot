@@ -1,5 +1,6 @@
 from django.conf.urls import url
+from dgfoodie.views import keyboard
 
 urlpatterns = [
-    url(r'^keyboard/','dgfoodie.views.keyboard'),
+    url(r'^keyboard/', keyboard),
 ]
