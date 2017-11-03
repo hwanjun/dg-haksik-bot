@@ -13,15 +13,15 @@ def get_menu(cafeteria_name):
     if cafeteria_name == '학생식당':
         lunch = "오돈불고기\n쌀밥\n아욱국\n미역줄기볶음\n무생채\n배추김치"
         dinner = "두부튀김양념조림\n쌀밥\n야채탕\n명엽채무침\n브로커리*초고추장\n배추김치"
-        return "--------------\n"+ "<점심>\n" + lunch + "<저녁>\n" + dinner
+        return "--------------\n"+ "<점심>\n" + lunch + "\n<저녁>\n" + dinner
     elif cafeteria_name == '교직원':
         lunch = "오돈불고기\n쌀밥\n아욱국\n미역줄기볶음\n무생채\n배추김치"
         dinner = "두부튀김양념조림\n쌀밥\n야채탕\n명엽채무침\n브로커리*초고추장\n배추김치"
-        return "--------------\n"+ lunch + dinner
+        return "--------------\n"+ "<점심>\n" + lunch + "\n<저녁>\n" + dinner
     elif cafeteria_name == '본부동':
         lunch = "오돈불고기\n쌀밥\n아욱국\n미역줄기볶음\n무생채\n배추김치"
         dinner = "두부튀김양념조림\n쌀밥\n야채탕\n명엽채무침\n브로커리*초고추장\n배추김치"
-        return "--------------\n"+ lunch + "\n" + dinner
+        return "--------------\n"+ "<점심>\n" + lunch + "\n<저녁>\n" + dinner
 
 
 @csrf_exempt
