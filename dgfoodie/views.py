@@ -9,9 +9,6 @@ def keyboard(request):
         'buttons' : ['학생식당-가마(3500원)', '학생식당-인터쉐프(5000원)','교직원(5000원)']
         })
 
-def copy_menu(food_name):
-
-
 
 def get_menu(cafeteria_name):
     if cafeteria_name == '학생식당-가마(3500원)':
