@@ -2,30 +2,83 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json, datetime
 
-def keyboard(request):
+def keyboard(request): ##키보드 정의해주기
 
     return JsonResponse({
         'type' : 'buttons',
         'buttons' : ['학생식당-가마(3500원)', '학생식당-인터쉐프(5000원)','교직원(5000원)']
         })
 
+##월요일:1 화요일:2 ... 일요일:7
+today_num = datetime.date.today().isocalendar()[2]
 
+##요일별 메뉴 모음 dict
+lunch_menu_A = {
+1 : '',
+2 : '',
+3 : '불고기당면볶음\n쌀밥\n시금치국\n연근조림\n열무겉절이\n배추김치',
+4 : '',
+5 : '',
+}
+
+lunch_menu_B = {
+1 : '',
+2 : '',
+3 : '순살치킨까스*양념치킨s\n쌀밥\n크림스프\n감자튀김*케찹\n삼색야채샐러드*요거트d\n배추김치/쥬시쿨',
+4 : '',
+5 : '',
+}
+
+lunch_menu_C = {
+1 : '',
+2 : '',
+3 : '돌솥비빔밥\n두부조림\n물미역초무침\n된장국\n배추김치\n쌀밥\n샐러드',
+4 : '',
+5 : '',
+}
+
+dinner_menu_A = {
+1 : '',
+2 : '',
+3 : '제육고추장볶음\n쌀밥\n매운콩나물국\n도토리묵야채무침\n미나리무침\n배추김치',
+4 : '',
+5 : '',
+}
+
+dinner_menu_B = {
+1 : '',
+2 : '',
+3 : '함박마요덮밥\n매운콩나물국\n타코야끼3ea\n배추김치',
+4 : '',
+5 : '',
+}
+
+dinner_menu_C = {
+1 : '',
+2 : '',
+3 : '돼지찌개\n치킨너겟/머스타드\n치커리생채\n양념깻잎지\n배추김치\n쌀밥',
+4 : '',
+5 : '',
+}
+
+##
 def get_menu(cafeteria_name):
     if cafeteria_name == '학생식당-가마(3500원)':
-        lunch = "프리미엄동그랑땡\n쌀밥\n콩나물국\n건새우무조림\n브로커리*초장\n배추김치"
-        dinner = "가자미구이\n쌀밥\n호박고추장찌개\n잡채\n참나물무침\n배추김치"
+        lunch = lunch_menu_A[today_num]
+        dinner = dinner_menu_A[today_num]
         return "--------------\n"+ "<점심>\n" + lunch + "\n \n<저녁>\n" + dinner
     elif cafeteria_name == '학생식당-인터쉐프(5000원)':
-        lunch = "중화비빔밥*계란후라이\n콩나물국\n메밀전병2ea*간장\n천사채샐러드\n배추김치\n사과주스"
-        dinner = "매운어묵가락국수\n쌀밥\n야채크로켓2ea\n배추김치"
+        lunch = lunch_menu_B[today_num]
+        dinner = dinner_menu_B[today_num]
         return "--------------\n"+ "<점심>\n" + lunch + "\n \n<저녁>\n" + dinner
     elif cafeteria_name == '교직원(5000원)':
-        lunch = "돈육고추장불고기\n상추/쌈장\n햄계란구이\n미역국\n배추김치\n쌀밥\n샐러드/누룽지탕"
-        dinner = "닭볶음탕\n두부구이/양념\n돌나물/초장\n무우말랭이지\n배추김치\n쌀밥"
+        lunch = lunch_menu_C[today_num]
+        dinner = dinner_menu_C[today_num]
         return "--------------\n"+ "<점심>\n" + lunch + "\n \n<저녁>\n" + dinner
 
 
-@csrf_exempt
+@csrf_exempt ##post방식 사용에 따른 CSRF Token 에러 제거
+##keyboard에 대한 응답 message
 def message(request):
     message = ((request.body).decode('utf-8'))
     return_json_str = json.loads(message)
