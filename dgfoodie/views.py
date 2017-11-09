@@ -93,5 +93,3 @@ def message(request): ##keyboard에 대한 응답 message
     })
 
 
-
-
